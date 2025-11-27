@@ -18,26 +18,22 @@ public class Customer {
    }
 
 public String statement() {
-    double totalAmount = 0;
-    int frequentRenterPoints = 0;
     Enumeration rentals = _rentals.elements();
     String result = "Rental Record for " + getName() + "\n";
 
     while (rentals.hasMoreElements()) {
         Rental each = (Rental) rentals.nextElement();
 
-        frequentRenterPoints += each.getFrequentRenterPoints();
-
         result += "\t" + each.getMovie().getTitle() + "\t" +
                 each.getCharge() + "\n";
-
-        totalAmount += each.getCharge();
     }
 
-    result += "Amount owed is " + totalAmount + "\n";
-    result += "You earned " + frequentRenterPoints + " frequent renter points";
+    result += "Amount owed is " + getTotalCharge() + "\n";
+    result += "You earned " + getTotalFrequentRenterPoints() +
+            " frequent renter points";
     return result;
 }
+
 
 
     private double getTotalCharge() {
@@ -88,10 +84,9 @@ public String htmlStatement() {
         totalAmount += each.getCharge();
     }
 
-    result += "<p>Amount owed is <em>" + totalAmount + "</em><p>\n";
-    result += "You earned <em>" + frequentRenterPoints +
-            "</em> frequent renter points<p>\n";
-
+    result += "<p>Amount owed is <em>" + getTotalCharge() + "</em><p>\n";
+result += "You earned <em>" + getTotalFrequentRenterPoints() +
+          "</em> frequent renter points<p>\n";
     return result;
 }
 
