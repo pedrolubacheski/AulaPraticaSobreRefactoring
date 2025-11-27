@@ -27,8 +27,10 @@ public int getPriceCode() {
       return _title;
   }
 
-  public double getCharge(int daysRented) {
-    double result = 0;
+public double getCharge(int daysRented) {
+    return _price.getCharge(daysRented);
+}
+
 
 public void setPriceCode(int arg) {
     switch (arg) {
