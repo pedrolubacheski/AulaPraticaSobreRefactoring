@@ -52,7 +52,7 @@ public class Customer {
    }
 
    // MÉTODO EXTRAÍDO (Refactoring 1)
-   private double amountFor(Rental each) {
+   private double amountFor(Rental aRental) {
       double result = 0;
 
       switch (each.getMovie().getPriceCode()) {
