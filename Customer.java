@@ -17,22 +17,15 @@ public class Customer {
       return _name;
    }
 
-public String statement() {
-    Enumeration rentals = _rentals.elements();
-    String result = "Rental Record for " + getName() + "\n";
-
-    while (rentals.hasMoreElements()) {
-        Rental each = (Rental) rentals.nextElement();
-
-        result += "\t" + each.getMovie().getTitle() + "\t" +
-                each.getCharge() + "\n";
-    }
-
-    result += "Amount owed is " + getTotalCharge() + "\n";
-    result += "You earned " + getTotalFrequentRenterPoints() +
-            " frequent renter points";
-    return result;
+   public Enumeration getRentals() {
+    return _rentals.elements();
 }
+
+
+public String statement() {
+    return new TextStatement().value(this);
+}
+
 
 
 
@@ -66,28 +59,8 @@ public String statement() {
    }
 
 public String htmlStatement() {
-    double totalAmount = 0;
-    int frequentRenterPoints = 0;
-    Enumeration rentals = _rentals.elements();
-    String result = "<h1>Rental Record for <em>" + getName() + "</em></h1><p>\n";
-
-    while (rentals.hasMoreElements()) {
-        Rental each = (Rental) rentals.nextElement();
-
-        // soma pontos
-        frequentRenterPoints += each.getFrequentRenterPoints();
-
-        // adiciona valor
-        result += each.getMovie().getTitle() + ": " +
-                each.getCharge() + "<br>\n";
-
-        totalAmount += each.getCharge();
-    }
-
-    result += "<p>Amount owed is <em>" + getTotalCharge() + "</em><p>\n";
-result += "You earned <em>" + getTotalFrequentRenterPoints() +
-          "</em> frequent renter points<p>\n";
-    return result;
+    return new HtmlStatement().value(this);
 }
+
 
 
